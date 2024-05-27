@@ -1,0 +1,18 @@
+public class Solution {
+    public int[] SortArrayByParity(int[] a) {
+        int left = 0, right = a.Length - 1, temp;
+
+        while (left < right) {
+            if (a[left] % 2 == 0) {
+                left++;
+            } else if (a[right] % 2 != 0) {
+                right--;
+            } else {
+                temp = a[right];
+                a[right--] = a[left];
+                a[left++] = temp;
+            }
+        }
+        return a;
+    }
+}

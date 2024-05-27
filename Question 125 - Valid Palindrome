@@ -1,0 +1,52 @@
+public class Solution {
+    public bool IsPalindrome(string s) {
+       int start = 0, end = s.Length-1;
+       while(start <=end)
+       {
+         bool isStartUpperCase = false;
+         bool isEndUpperCase = false;
+         
+         bool isStartAlpNum = IsAlphaNumeric (s[start], out isStartUpperCase);
+         bool isEndAlpNum = IsAlphaNumeric (s[end], out isEndUpperCase);
+         
+         if(!isStartAlpNum)
+           start++;
+         else if(!isEndAlpNum)
+           end--;
+         else
+         {
+           char chStart = s[start];
+           char chEnd = s[end];
+           if(isStartUpperCase)
+              chStart = (char) ((int)chStart + 32);
+           if(isEndUpperCase)
+              chEnd = (char) ((int)chEnd + 32);
+           
+           if(chStart != chEnd)
+               return false;
+             
+            start++;
+            end--;
+         }
+       }
+        
+        return true;
+    }
+    
+    private bool IsAlphaNumeric(char ch, out bool isUpperCase)
+    {
+      isUpperCase = false;
+      int ascii = (int)ch;
+        
+      if(ascii >= 48 && ascii <=57)
+          return true;
+      if(ascii >= 97 && ascii <=122)
+          return true;
+      if(ascii >= 65 && ascii <=90)
+      {
+        isUpperCase = true;
+        return true;
+      }
+      return false;
+    }
+}

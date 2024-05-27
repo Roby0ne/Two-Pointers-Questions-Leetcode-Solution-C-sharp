@@ -1,0 +1,17 @@
+public class Solution {
+    public void Rotate(int[] nums, int k) {
+        k %= nums.Length;
+        int[] li = new int [k];
+        int[] li2 = new int [nums.Length - k];
+        Array.Copy(nums, nums.Length - k, li, 0, k);
+        Array.Copy(nums, 0, li2, 0, nums.Length - k);
+        for (int i = 0; i < k; i++)
+        {
+          nums[i] = li[i];    
+        }
+        for (int i = 0; i < nums.Length - k; i++)
+        {
+          nums[i + k] = li2[i];  
+        }
+    }
+}
